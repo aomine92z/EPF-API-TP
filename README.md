@@ -93,31 +93,31 @@ About the API workflow:
 - The routers file contains the declaration of all API routes by tags 
 - The Services folder must contain the functions that are called in the route declaration
 
-- **Step 1: Installing libraries:** Install the libraries in the requirements.txt
+- **Step 1: Installing libraries:** Install the libraries in the requirements.txt ✅
 
-- **Step 2: First launch:**  Execute the main.py file in the root folder and access it.
+- **Step 2: First launch:**  Execute the main.py file in the root folder and access it. ✅
 
-- **Step 3: Redirect root API:**  Redirect the root endpoint of your API to the automatic swagger documentation
+- **Step 3: Redirect root API:**  Redirect the root endpoint of your API to the automatic swagger documentation ✅
 
-- **Step 4: Access the swagger documentation:**  Access to the swagger built automatically by FastAPI
+- **Step 4: Access the swagger documentation:**  Access to the swagger built automatically by FastAPI ✅
 
-- **Step 5: First call to the API:**  Make an API request on the hello route using the swagger directly or a tool like insomnia or postman
+- **Step 5: First call to the API:**  Make an API request on the hello route using the swagger directly or a tool like insomnia or postman ✅
 
-- **Step 6: Access the dataset:**  Create a route in api/routes/data to download and save the contents of the following kaggle dataset in the src/data folder: https://www.kaggle.com/datasets/uciml/iris. If you're having too many problems, simply download the dataset from the kaggle website. documentation : https://www.geeksforgeeks.org/how-to-download-kaggle-datasets-into-jupyter-notebook/
+- **Step 6: Access the dataset:**  Create a route in api/routes/data to download and save the contents of the following kaggle dataset in the src/data folder: https://www.kaggle.com/datasets/uciml/iris. If you're having too many problems, simply download the dataset from the kaggle website. documentation : https://www.geeksforgeeks.org/how-to-download-kaggle-datasets-into-jupyter-notebook/ ✅
 
-- **Step 7: Loading the Iris Flower dataset:** Add an endpoint to load the iris dataset file as a dataframe and return it as a json.
+- **Step 7: Loading the Iris Flower dataset:** Add an endpoint to load the iris dataset file as a dataframe and return it as a json. ✅
 
-- **Step 8: Processing the dataset:** Add an endpoint to be able to perform the necessary processing on the data before being able to train a model with it.
+- **Step 8: Processing the dataset:** Add an endpoint to be able to perform the necessary processing on the data before being able to train a model with it. ✅
 
-- **Step 9: Split in train and test:** Add an endpoint to split the iris dataset as train and test and send back a json with both
+- **Step 9: Split in train and test:** Add an endpoint to split the iris dataset as train and test and send back a json with both ✅
 
-- **Step 10: Parameters init:** Go to scikit learn and select any classification model to be used on the iris dataset (performance is of no interest to us in this course). Look at the parameters you need to use for this model and store them in the file src/config/model_parameters.json
+- **Step 10: Parameters init:** Go to scikit learn and select any classification model to be used on the iris dataset (performance is of no interest to us in this course). Look at the parameters you need to use for this model and store them in the file src/config/model_parameters.json ✅
 
-- **Step 11: Training the classification model:** Add an endpoint to train a classification model with the processed dataset as input and saved this model in the folder src/models.
+- **Step 11: Training the classification model:** Add an endpoint to train a classification model with the processed dataset as input and saved this model in the folder src/models.✅
 
-- **Step 12: Prediction with Trained Model:** Add endpoint to make predictions with trained model and parameters. This endpoint have to send back the predictions as json.
+- **Step 12: Prediction with Trained Model:** Add endpoint to make predictions with trained model and parameters. This endpoint have to send back the predictions as json. ✅
 
-- **Step 13: Create the Firestore collection:** Create the firestore collection "parameters" with the following parameters: "n_estimators", "criterion".
+- **Step 13: Create the Firestore collection:** Create the firestore collection "parameters" with the following parameters: "n_estimators", "criterion". 
 
 - **Step 14: Retrieve parameters from Firestore:** Add an endpoint to retrieve parameters from Firestore.
 
