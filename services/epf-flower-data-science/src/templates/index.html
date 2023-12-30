@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI Application</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #121212; /* Very dark grey background */
+            color: #ffffff; /* White text color */
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-bottom: 60px; /* Adjust the margin as needed */
+            text-align: center;
+            padding: 20px;
+        }
+        .action-button-1 {
+            background-color: #3498db; /* Blue */
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .action-button-2 {
+            background-color: #e74c3c; /* Red */
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .action-button-3 {
+            background-color: #2ecc71; /* Green */
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .action-button-4 {
+            background-color: #f39c12; /* Orange */
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .action-button-5 {
+            background-color: #9b59b6; /* Purple */
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .action-button-6 {
+            background-color: #34495e; /* Dark Gray */
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .firestore-section {
+            margin-top: 40px;
+        }
+        .firestore-button-1 {
+            background-color: #27ae60; /* Green */
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .firestore-button-2 {
+            background-color: #e74c3c; /* Red */
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .firestore-button-3 {
+            background-color: #3498db; /* Blue */
+            color: white;
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose an Action</h1>
+        <button class="action-button-1" onclick="window.location.href='/download_data'">Download Data</button>
+        <button class="action-button-2" onclick="window.location.href='/load_data'">Load Data</button>
+        <button class="action-button-3" onclick="window.location.href='/process_data'">Process Data</button>
+        <button class="action-button-4" onclick="window.location.href='/split_data'">Split Data</button>
+        <button class="action-button-5" onclick="window.location.href='/train_model'">Train Model</button>
+        <button class="action-button-6" onclick="window.location.href='/predict_result'" addElement="menu-button">Predict Result</button>
+    </div>
+    
+    <!-- Firestore Section -->
+    <div class="container firestore-section">
+        <h1>Firestore Section</h1>
+        <button class="firestore-button-1" onclick="window.location.href='/get_parameters'">Get Parameters</button>
+        <button class="firestore-button-2" onclick="window.location.href='/update_parameters'">Update Parameters</button>
+    </div>
+</body>
+</html>

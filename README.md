@@ -113,7 +113,7 @@ About the API workflow:
 
 - **Step 10: Parameters init:** Go to scikit learn and select any classification model to be used on the iris dataset (performance is of no interest to us in this course). Look at the parameters you need to use for this model and store them in the file src/config/model_parameters.json ✅
 
-- **Step 11: Training the classification model:** Add an endpoint to train a classification model with the processed dataset as input and saved this model in the folder src/models.✅
+- **Step 11: Training the classification model:** Add an endpoint to train a classification model with the processed dataset as input and saved this model in the folder src/models. ✅
 
 - **Step 12: Prediction with Trained Model:** Add endpoint to make predictions with trained model and parameters. This endpoint have to send back the predictions as json. ✅
 
@@ -122,6 +122,20 @@ About the API workflow:
 - **Step 14: Retrieve parameters from Firestore:** Add an endpoint to retrieve parameters from Firestore.
 
 - **Step 15: Update and add Firestore parameters:** Add endpoints to update or add parameters in Firestore.
+
+- **Step 16: Authentication:** Implement authentication through Firestore authentication
+
+- **Step 17:** User management: Extend authentication to include user registration, login and logout endpoints. Explore also user roles and permissions. Allow only admin users to access to the list of user
+
+- **Step 18:** Protection against Denial of Service (DoS) attacks: Implement rate limiting by user
+
+- **Step 19:** API versioning: Add the information about the version of your API. (you are on version 1.0) Also add the prefix to your routes to indicate the version.
+
+- **Step 20:** Error Handling: Add a custom error responses for error 404 and provide meaningful error message.
+
+- **Step 21:** API testing: Implement unit tests for your functions and enpoints
+
+- **Step 22:** CI/CD pipeline: Define a CI/CD pipeline on github using github Actions to launch your tests after every push
 
 The completion of this TP is relatively long and may overtake TP3 
 
