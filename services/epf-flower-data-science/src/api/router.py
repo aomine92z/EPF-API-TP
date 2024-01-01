@@ -7,4 +7,4 @@ router = APIRouter()
 
 router.include_router(hello.router, tags=["Hello"])
 router.include_router(data.router, tags=["Data"])  # Include the data route
-router.include_router(parameters.router, tags=["Data"])  # Include the data route
+router.include_router(parameters.router, tags=["Parameters"])  # Include the data route

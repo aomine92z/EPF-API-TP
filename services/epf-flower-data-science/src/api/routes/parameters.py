@@ -1,7 +1,7 @@
 from fastapi import HTTPException, Depends, Request, APIRouter
 from google.cloud import firestore
 import json
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.templating import Jinja2Templates
 import requests
 
@@ -46,47 +46,39 @@ async def get_parameters():
 async def update_parameters_form(request: Request):
     # Retrieve current values from Firestore or your storage
     current_values = (await get_parameters()).get("parameters")
+    return templates.TemplateResponse("update_parameters.html",{"request": request, "current_values": current_values})
 
-    return templates.TemplateResponse(
-        "update_parameters.html",
-        {"request": request, "current_values": current_values}
-    )
+@router.put("/update_parameters_put")
+async def update_parameters_put(request: Request) :
+    data = await request.json()  # Get JSON data from the request body
+    n_estimators = int(data.get("n_estimators"))
+    criterion = data.get("criterion")
 
-import json
+    response_data = {"status": "success", "message": ""}
 
-@router.post("/update_parameters/17sAXmC5Oru6QPuMXMLo", response_class=HTMLResponse)
-async def update_parameters(request: Request, n_estimators: int, criterion: str):
+    try:
+        if not n_estimators > 0:
+            raise HTTPException(status_code=400, detail="Invalid value for n_estimators. It must be greater than 0.")
 
-    async def send_firestore_request(json_data):
-        url = "http://localhost:8080/update_parameters/17sAXmC5Oru6QPuMXMLo"
-        headers = {"Content-Type": "application/json"}
-        response = requests.put(url, data=json_data, headers=headers)
+        valid_criteria = {"gini", "entropy", "log_loss"}  # Add other valid criteria as needed
+        if criterion not in valid_criteria:
+            raise HTTPException(status_code=400, detail=f"Invalid criterion. Valid criteria are {valid_criteria}")
 
-        # Check the response status code and handle it as needed
-        if response.status_code == 200:
-            print("Request successful")
+        parameters_doc = collection_ref.document("17sAXmC5Oru6QPuMXMLo")
+        params = parameters_doc.get().to_dict()
+        params["n_estimators"] = n_estimators
+        params["criterion"] = criterion
+
+        # Check if the document exists
+        if parameters_doc.get().exists:
+            # Update the parameters
+            parameters_doc.set(document_data=params)
+            response_data["message"] = "Firestore database updated"
         else:
-            print(f"Request failed with status code: {response.status_code}")
-            print(response.text)
+            raise HTTPException(status_code=404, detail="Parameters document not found")
 
-    # Validate input parameters
-    if not n_estimators > 0:
-        raise HTTPException(status_code=400, detail="Invalid value for n_estimators. It must be greater than 0.")
+    except HTTPException as e:
+        response_data["status"] = "error"
+        response_data["message"] = str(e.detail)
 
-    valid_criteria = {"gini", "entropy"}  # Add other valid criteria as needed
-    if criterion not in valid_criteria:
-        raise HTTPException(status_code=400, detail=f"Invalid criterion. Valid criteria are {valid_criteria}")
-
-    # Your Firestore update logic
-    update_data = {"n_estimators": n_estimators, "criterion": criterion}
-    json_data = json.dumps(update_data)  # Convert Python dictionary to JSON string
-
-    # Your code to send the JSON payload to Firestore. Adjust as needed.
-    # For example, you might use the requests library or another HTTP client.
-    # Replace the following line with your actual code to send the request to Firestore.
-    await send_firestore_request(json_data)
-    
-    return templates.TemplateResponse(
-        "update_parameters.html",
-        {"request": request, "current_values": {"n_estimators": n_estimators, "criterion": criterion}}
-    )
+    return response_data

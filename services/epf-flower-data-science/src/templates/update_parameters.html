@@ -1,17 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update Parameters</title>
 </head>
 <body>
-    <form method="post" action="/update_parameters/17sAXmC5Oru6QPuMXMLo">
+    <form id="updateForm">
         <label for="n_estimators">n_estimators:</label>
-        <input type="number" id="n_estimators" name="n_estimators" value="{{ current_values.n_estimators }}" required><br>
+        <input type="number" id="n_estimators" name="n_estimators" placeholder=" {{current_values.n_estimators}} " required><br>
 
         <label for="criterion">criterion:</label>
-        <input type="text" id="criterion" name="criterion" value="{{ current_values.criterion }}" required><br>
+        <input type="text" id="criterion" name="criterion" placeholder=" {{ current_values.criterion }} "><br>
 
-        <input type="submit" value="Valid">
+        <input type="button" value="Valid" onclick="updateParameters()">
     </form>
+    
+    <div id="messageContainer" style="display: none;">
+        <p id="messageText"></p>
+    </div>
+
+    <script>
+        async function updateParameters() {
+            const n_estimators = document.getElementById("n_estimators").value;
+            const criterion = document.getElementById("criterion").value;
+
+            // Assuming you're using fetch to send a POST request
+            const response = await fetch('/update_parameters_put', {
+                method: 'PUT',  // Adjust the method accordingly
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ n_estimators, criterion }),
+            });
+
+            const result = await response.json();
+            updateMessage(result);
+        }
+
+        function updateMessage(result) {
+            const messageContainer = document.getElementById("messageContainer");
+            const messageText = document.getElementById("messageText");
+
+            if (result.status === 'success') {
+                messageText.innerText = result.message;
+                messageContainer.style.color = 'green';  // Set color for success message
+            } else {
+                messageText.innerText = result.message;
+                messageContainer.style.color = 'red';  // Set color for error message
+            }
+
+            messageContainer.style.display = 'block';  // Show the message container
+        }
+    </script>
 </body>
 </html>
