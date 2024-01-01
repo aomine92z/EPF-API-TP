@@ -3,6 +3,8 @@ from google.cloud import firestore
 import json
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+import requests
+
 
 router = APIRouter()
 templates = Jinja2Templates(directory="services/epf-flower-data-science/src/templates")  # Specify the directory where your templates are stored
@@ -50,8 +52,23 @@ async def update_parameters_form(request: Request):
         {"request": request, "current_values": current_values}
     )
 
-@router.put("/update_parameters", response_class=HTMLResponse)
+import json
+
+@router.post("/update_parameters/17sAXmC5Oru6QPuMXMLo", response_class=HTMLResponse)
 async def update_parameters(request: Request, n_estimators: int, criterion: str):
+
+    async def send_firestore_request(json_data):
+        url = "http://localhost:8080/update_parameters/17sAXmC5Oru6QPuMXMLo"
+        headers = {"Content-Type": "application/json"}
+        response = requests.put(url, data=json_data, headers=headers)
+
+        # Check the response status code and handle it as needed
+        if response.status_code == 200:
+            print("Request successful")
+        else:
+            print(f"Request failed with status code: {response.status_code}")
+            print(response.text)
+
     # Validate input parameters
     if not n_estimators > 0:
         raise HTTPException(status_code=400, detail="Invalid value for n_estimators. It must be greater than 0.")
@@ -61,8 +78,14 @@ async def update_parameters(request: Request, n_estimators: int, criterion: str)
         raise HTTPException(status_code=400, detail=f"Invalid criterion. Valid criteria are {valid_criteria}")
 
     # Your Firestore update logic
-    collection_ref.document("17sAXmC5Oru6QPuMXMLo").set({"n_estimators": n_estimators, "criterion": criterion}, merge=True)
+    update_data = {"n_estimators": n_estimators, "criterion": criterion}
+    json_data = json.dumps(update_data)  # Convert Python dictionary to JSON string
 
+    # Your code to send the JSON payload to Firestore. Adjust as needed.
+    # For example, you might use the requests library or another HTTP client.
+    # Replace the following line with your actual code to send the request to Firestore.
+    await send_firestore_request(json_data)
+    
     return templates.TemplateResponse(
         "update_parameters.html",
         {"request": request, "current_values": {"n_estimators": n_estimators, "criterion": criterion}}
