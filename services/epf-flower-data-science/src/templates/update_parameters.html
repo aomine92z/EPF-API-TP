@@ -26,7 +26,7 @@
             const criterion = document.getElementById("criterion").value;
 
             // Assuming you're using fetch to send a POST request
-            const response = await fetch('/update_parameters_put', {
+            const response = await fetch('/v1/update_parameters_put', {
                 method: 'PUT',  // Adjust the method accordingly
                 headers: {
                     'Content-Type': 'application/json',

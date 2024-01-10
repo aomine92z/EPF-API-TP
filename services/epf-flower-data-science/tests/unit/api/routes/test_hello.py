@@ -1,7 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
 
-
 class TestHelloRoute:
     @pytest.fixture
     def client(self) -> TestClient:
@@ -9,7 +8,7 @@ class TestHelloRoute:
         Test client for integration tests
         """
 
-        from main import get_application
+        from .....src.app import get_application
 
         app = get_application()
 

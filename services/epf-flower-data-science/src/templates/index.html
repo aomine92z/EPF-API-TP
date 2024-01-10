@@ -107,19 +107,19 @@
 <body>
     <div class="container">
         <h1>Choose an Action</h1>
-        <button class="action-button-1" onclick="window.location.href='/download_data'">Download Data</button>
-        <button class="action-button-2" onclick="window.location.href='/load_data'">Load Data</button>
-        <button class="action-button-3" onclick="window.location.href='/process_data'">Process Data</button>
-        <button class="action-button-4" onclick="window.location.href='/split_data'">Split Data</button>
-        <button class="action-button-5" onclick="window.location.href='/train_model'">Train Model</button>
-        <button class="action-button-6" onclick="window.location.href='/predict_result'" addElement="menu-button">Predict Result</button>
+        <button class="action-button-1" onclick="window.location.href='/v1/download_data'">Download Data</button>
+        <button class="action-button-2" onclick="window.location.href='/v1/load_data'">Load Data</button>
+        <button class="action-button-3" onclick="window.location.href='/v1/process_data'">Process Data</button>
+        <button class="action-button-4" onclick="window.location.href='/v1/split_data'">Split Data</button>
+        <button class="action-button-5" onclick="window.location.href='/v1/train_model'">Train Model</button>
+        <button class="action-button-6" onclick="window.location.href='/v1/predict_result'">Predict Result</button>
     </div>
     
     <!-- Firestore Section -->
     <div class="container firestore-section">
         <h1>Firestore Section</h1>
-        <button class="firestore-button-1" onclick="window.location.href='/get_parameters'">Get Parameters</button>
-        <button class="firestore-button-2" onclick="window.location.href='/update_parameters'" method="post">Update Parameters</button>
+        <button class="firestore-button-1" onclick="window.location.href='/v1/get_parameters'">Get Parameters</button>
+        <button class="firestore-button-2" onclick="window.location.href='/v1/update_parameters'">Update Parameters</button>
     </div>
 </body>
 </html>

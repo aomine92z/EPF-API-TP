@@ -20,5 +20,5 @@ def get_application() -> FastAPI:
         allow_headers=["*"],
     )
 
-    application.include_router(router)
+    application.include_router(router, prefix="/v1", tags=["v1"])
     return application
